@@ -27,7 +27,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
   return res.send(`hello from Server`);
 });
-// app.use("/api/auth", proxy(process.env.AUTH_SERVICE_URL));
+
+// accessing this  service using proxy
+app.use("/api/auth", proxy(process.env.AUTH_SERVICE_URL));
 
 // app.get("/api/me", isAuth, getCurrentUser);
 
