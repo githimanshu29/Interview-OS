@@ -55,3 +55,29 @@ export const login = async (req, res) => {
     return res.status(401).json({ message: error.message });
   }
 };
+
+export const logout = async (req, res) => {
+  try {
+    const sessionId = req.cookies?.session;
+    //deleting data from redis
+    if (sessionId) {
+      await redis.del(`session:${sessionId}`);
+    }
+    // also clear cookie
+    res.clearCookie("session", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
