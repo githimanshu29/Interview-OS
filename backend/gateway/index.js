@@ -6,8 +6,9 @@ import proxy from "express-http-proxy";
 import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
-// import { isAuth } from "./middlewares/isAuth.js";
-// import { getCurrentUser } from "./controllers/user.controller.js";
+
+import { getCurrentUser } from "./controllers/user.controller.js";
+import { isAuth } from "./middleware/isAuth.js";
 // import { proxyWithUser } from "./utils/proxyWithHeaders.js";
 // dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const app = express();
@@ -15,25 +16,17 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:5174",
-    credentials: true,
+    origin: "http://localhost:5173",
+    credentials: true, // to acces cookies etc...
   }),
 );
 
-app.use(morgan(dev));
+app.use(morgan("dev"));
+
 app.use(cookieParser());
 
 const PORT = process.env.PORT || 5000;
 app.use(express.json());
-
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     credentials: true,
-//   }),
-// );
-// app.use(morgan("dev"));
-// app.use(cookieParser());
 
 app.get("/", (req, res) => {
   return res.send(`hello from Server`);
@@ -42,7 +35,7 @@ app.get("/", (req, res) => {
 // accessing this  service using proxy
 app.use("/api/auth", proxy(process.env.AUTH_SERVICE_URL));
 
-// app.get("/api/me", isAuth, getCurrentUser);
+app.get("/api/me", isAuth, getCurrentUser);
 
 // app.use(
 //   "/api/interview",
