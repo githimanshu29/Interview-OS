@@ -11,6 +11,17 @@ import cookieParser from "cookie-parser";
 // import { proxyWithUser } from "./utils/proxyWithHeaders.js";
 // dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const app = express();
+app.use(express.json());
+
+app.use(
+  cors({
+    origin: "http://localhost:5174",
+    credentials: true,
+  }),
+);
+
+app.use(morgan(dev));
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 5000;
 app.use(express.json());

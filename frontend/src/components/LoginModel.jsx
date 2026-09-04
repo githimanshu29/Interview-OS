@@ -1,24 +1,24 @@
-// import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 // import axios from "axios";
-// import { auth, provider } from "../utils/firebase";
+import { auth, provider } from "../utils/firebase";
 import { FcGoogle } from "react-icons/fc";
 import { FiX } from "react-icons/fi";
 // import { BiBrain } from "react-icons/bi";
 // import { SiKaios } from "react-icons/si";
-// import api from "../utils/axios";
+import api from "../utils/axios";
 
 export function LoginModel({ onClose, setUser }) {
-  //   const handleGoogleLogin = async () => {
-  //     try {
-  //       const result = await signInWithPopup(auth, provider);
-  //       const token = await result.user.getIdToken();
-  //       const response = await api.post("/api/auth/login", { token });
-  //       setUser(response.data.user);
-  //       onClose();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const token = await result.user.getIdToken();
+      const response = await api.post("/api/auth/login", { token });
+      setUser(response.data.user);
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div
@@ -83,7 +83,7 @@ export function LoginModel({ onClose, setUser }) {
           {/* Google */}
           <div className="mt-7">
             <button
-              //   onClick={handleGoogleLogin}
+              onClick={handleGoogleLogin}
               className="
                 w-full
                 flex items-center justify-center gap-3
