@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+* {
+  scroll-behavior: smooth;
+}
+ 
+body {
+  background-color: #fbfafc;
+  color: white;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0010;
+}
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+ 
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #a855f7, #ec4899, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

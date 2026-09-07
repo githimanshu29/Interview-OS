@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { GiArtificialHive } from "react-icons/gi";
 import { LoginModel } from "../components/LoginModel";
 import { useState } from "react";
+import img from "../assets/image.png";
 
 function Home({ user, setUser }) {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -97,7 +98,7 @@ function Home({ user, setUser }) {
           </motion.div>
 
           {/* Hero Image */}
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ y: -10, scale: 1.02 }}
@@ -113,7 +114,7 @@ function Home({ user, setUser }) {
                   "https://placehold.co/900x500/F3F4F6/0A0A0A?text=IOS.Ai+Dashboard";
               }}
             />
-          </motion.div> */}
+          </motion.div>
         </div>
       </section>
 
