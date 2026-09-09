@@ -4,6 +4,7 @@ import { GiArtificialHive } from "react-icons/gi";
 import { LoginModel } from "../components/LoginModel";
 import { useState } from "react";
 import img from "../assets/image.png";
+import { FiBarChart2, FiFileText, FiMap, FiMic } from "react-icons/fi";
 
 function Home({ user, setUser }) {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -118,6 +119,81 @@ function Home({ user, setUser }) {
         </div>
       </section>
 
+      {/* ── AGENTS ── */}
+      <section className="py-16 bg-[#F8F9FA]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center px-3 py-1.5 rounded-full border border-black/15 bg-black/5 text-black/70 text-xs font-medium mb-4">
+              AI Powered Agents
+            </div>
+
+            <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-[#0A0A0A] [text-shadow:0_4px_20px_rgba(0,0,0,0.1)]">
+              Specialized Agents For
+              <span className="block text-black/30">Every Interview Stage</span>
+            </h2>
+
+            <p className="text-black/40 text-sm max-w-2xl mx-auto mt-4 leading-relaxed">
+              Interview-OS combines multiple AI agents that work together to
+              help you build your resume, practice interviews, receive detailed
+              feedback, and follow a personalized roadmap to land your dream
+              job.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                icon: <FiFileText />,
+                title: "Resume Agent",
+                desc: "Create ATS-friendly resumes, improve profile strength and maximize interview opportunities.",
+              },
+              {
+                icon: <FiMic />,
+                title: "Interview Agent",
+                desc: "Conduct realistic HR, Technical and Coding interviews with AI-powered simulations.",
+              },
+              {
+                icon: <FiBarChart2 />,
+                title: "Feedback Agent",
+                desc: "Get detailed answer analysis, scoring reports and improvement recommendations.",
+              },
+              {
+                icon: <FiMap />,
+                title: "Roadmap Agent",
+                desc: "Generate personalized learning roadmaps based on goals, skills and performance.",
+              },
+            ].map((agent, i) => (
+              <motion.div
+                key={agent.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group relative overflow-hidden bg-[#0A0A0A]/80 backdrop-blur-2xl border border-white/10 rounded-2xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)] hover:border-white/20 transition-all"
+              >
+                {/* glass sheen */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent pointer-events-none" />
+                {/* hover glow */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative">
+                  <div className="w-11 h-11 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center text-white text-lg mb-4 shadow-inner">
+                    {agent.icon}
+                  </div>
+                  <h3 className="text-base font-bold mb-2 text-white">
+                    {agent.title}
+                  </h3>
+                  <p className="text-white/45 text-xs leading-relaxed">
+                    {agent.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Login Modal placeholder */}
       {showLoginModal && (
         <LoginModel
@@ -125,6 +201,21 @@ function Home({ user, setUser }) {
           setUser={setUser}
         />
       )}
+
+      {/* ── FOOTER ── */}
+      <footer className="border-t border-black/7 py-6 text-center bg-white">
+        <div className="flex items-center justify-center gap-2 mb-1.5">
+          <div className="w-5 h-5 rounded-md bg-[#0A0A0A] flex items-center justify-center">
+            <GiArtificialHive size={11} color="white" />
+          </div>
+          <span className="font-bold text-xs text-[#0A0A0A]/70">
+            Interview-OS
+          </span>
+        </div>
+        <div className="text-black/30 text-xs">
+          © {new Date().getFullYear()} Interview-OS· All rights reserved
+        </div>
+      </footer>
     </div>
   );
 }
