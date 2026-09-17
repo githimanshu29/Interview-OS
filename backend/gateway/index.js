@@ -43,7 +43,7 @@ app.get("/api/me", isAuth, getCurrentUser);
 //   proxyWithUser(process.env.INTERVIEW_SERVICE_URL),
 // );
 
-// app.use("/api/resume", isAuth, proxyWithUser(process.env.RESUME_SERVICE_URL));
+app.use("/api/resume", proxy(process.env.RESUME_SERVICE_URL));
 
 // app.use("/api/roadmap", isAuth, proxyWithUser(process.env.ROADMAP_SERVICE_URL));
 
