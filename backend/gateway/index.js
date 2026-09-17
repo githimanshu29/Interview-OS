@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 
 import { getCurrentUser } from "./controllers/user.controller.js";
 import { isAuth } from "./middleware/isAuth.js";
+import { proxyWithUser } from "./utils/proxyWithHeaders.js";
 // import { proxyWithUser } from "./utils/proxyWithHeaders.js";
 // dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const app = express();
@@ -43,7 +44,7 @@ app.get("/api/me", isAuth, getCurrentUser);
 //   proxyWithUser(process.env.INTERVIEW_SERVICE_URL),
 // );
 
-app.use("/api/resume", proxy(process.env.RESUME_SERVICE_URL));
+app.use("/api/resume", isAuth, proxyWithUser(process.env.RESUME_SERVICE_URL));
 
 // app.use("/api/roadmap", isAuth, proxyWithUser(process.env.ROADMAP_SERVICE_URL));
 
