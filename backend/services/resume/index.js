@@ -6,7 +6,7 @@ import { connectDb } from "./config/db.js";
 const app = express();
 app.use(express.json());
 
-const PORT = process.env.PORT || 6001;
+const PORT = process.env.PORT || 6002;
 
 app.get("/", (req, res) => {
   res.send("Hello from Resume-Services");

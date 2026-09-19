@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { useEffect } from "react";
 import { getCurrentUser } from "./apis/user.api.js";
+import Scorer from "./pages/Scorer.jsx";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -48,6 +49,17 @@ const App = () => {
           element={
             user ? (
               <Dashboard user={user} setUser={setUser} />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        ></Route>
+
+        <Route
+          path="/scorer"
+          element={
+            user ? (
+              <Scorer user={user} setUser={setUser} />
             ) : (
               <Navigate to="/" replace />
             )
