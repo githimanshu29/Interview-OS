@@ -6,7 +6,7 @@ const resumeSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       unique: true,
-      index: true, //
+      index: true,
     },
 
     extractedText: {
@@ -40,7 +40,15 @@ const resumeSchema = new mongoose.Schema(
     },
 
     education: {
-      type: [String],
+      type: [
+        {
+          institution: String,
+          degree: String,
+          duration: String,
+          cgpa: String,
+          location: String,
+        },
+      ],
       default: [],
     },
 
@@ -50,12 +58,25 @@ const resumeSchema = new mongoose.Schema(
     },
 
     projects: {
-      type: [String],
+      type: [
+        {
+          title: String,
+          technologies: [String],
+          description: String,
+        },
+      ],
       default: [],
     },
 
     experience: {
-      type: [String],
+      type: [
+        {
+          company: String,
+          role: String,
+          duration: String,
+          description: String,
+        },
+      ],
       default: [],
     },
 

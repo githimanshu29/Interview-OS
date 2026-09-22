@@ -2,7 +2,8 @@
 
 import fs from "fs/promises";
 
-import Resume from "../model/resume.model.js";
+// import Resume from "../model/resume.model.js";
+import Resume from "../models/resume.model.js";
 import extractPdfText from "../config/pdf.js";
 import resumeAgent from "../agents/resume.agent.js";
 
@@ -10,12 +11,15 @@ import redis from "../../../shared/redis/redis.js";
 
 export const uploadResume = async (req, res) => {
   try {
+    console.log("1️⃣ uploadResume started");
     if (!req.file) {
       return res.status(400).json({
         success: false,
         message: "Resume PDF is required",
       });
     }
+
+    console.log("2️⃣ File received:", req.file.path);
 
     const userId = req.headers["x-user-id"];
 
@@ -26,17 +30,25 @@ export const uploadResume = async (req, res) => {
       });
     }
 
+    console.log("3️⃣ User ID:", userId);
+
     // -----------------------
     // Extract Resume Text
     // -----------------------
 
     const resumeText = await extractPdfText(req.file.path);
 
+    console.log("4️⃣ PDF text extracted");
+    console.log("Text length:", resumeText?.length);
+
     // -----------------------
     // AI Resume Analysis
     // -----------------------
 
     const aiResponse = await resumeAgent(resumeText);
+
+    console.log("5️⃣ AI response received");
+    console.log("AI response:", aiResponse);
 
     const resumeData = JSON.parse(aiResponse);
 
@@ -45,7 +57,7 @@ export const uploadResume = async (req, res) => {
     // -----------------------
 
     let resume = await Resume.findOne({ userId });
-
+    console.log("7️⃣ Existing resume:", !!resume);
     if (resume) {
       Object.assign(resume, {
         ...resumeData,
@@ -53,21 +65,26 @@ export const uploadResume = async (req, res) => {
       });
 
       await resume.save();
+      console.log("8️⃣ Existing resume updated");
     } else {
       resume = await Resume.create({
         userId,
         extractedText: resumeText,
         ...resumeData,
       });
+      console.log("8️⃣ New resume created");
     }
 
     // -----------------------
     // Redis
     // -----------------------
-
+    console.log("9️⃣ Saving to Redis");
     await redis.set(`resume:${userId}`, JSON.stringify(resume));
 
+    console.log("🔟 Redis saved");
+
     await fs.unlink(req.file.path); // deleting pdf
+    console.log("1️⃣1️⃣ PDF deleted");
 
     // -----------------------
     // Response
@@ -79,12 +96,17 @@ export const uploadResume = async (req, res) => {
       data: resume,
     });
   } catch (error) {
-    console.log(error);
+    console.error("🔥 RESUME UPLOAD ERROR");
+    console.error(error);
+    console.error("MESSAGE:", error.message);
+    console.error("STACK:", error.stack);
 
     if (req.file) {
       try {
         await fs.unlink(req.file.path);
-      } catch {}
+      } catch (unlinkError) {
+        console.error("PDF delete error:", unlinkError.message);
+      }
     }
 
     return res.status(500).json({

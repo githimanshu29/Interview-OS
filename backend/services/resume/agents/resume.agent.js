@@ -1,4 +1,4 @@
-import llm from "../configs/llm.js";
+import llm from "../config/llm.js";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 
 const resumeAgent = async (resumeText) => {

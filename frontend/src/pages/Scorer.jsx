@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
-import api from "../utils/axios";
+// import api from "../utils/axios";
 import { FiUploadCloud } from "react-icons/fi";
 import { useState } from "react";
+import api from "../utils/axios";
 
 function Navbar({ label }) {
   const navigate = useNavigate();
@@ -37,23 +38,23 @@ function Scorer({ user, setUser }) {
     try {
       setLoading(true);
 
-      const coinResponse = await useCoins({
-        coins: 10,
-        action: "resume-score",
-      });
+      //   const coinResponse = await useCoins({
+      //     coins: 10,
+      //     action: "resume-score",
+      //   });
 
-      setUser((prev) => ({
-        ...prev,
-        interviewCoin: coinResponse.interviewCoin,
-      }));
+      //   setUser((prev) => ({
+      //     ...prev,
+      //     interviewCoin: coinResponse.interviewCoin,
+      //   }));
 
       const formData = new FormData();
       formData.append("resume", file);
       const response = await api.post("/api/resume/upload", formData);
       //   dispatch(setResume(response.data.data));
     } catch (err) {
-      alert(err.response?.data?.message || "Upload Failed");
       console.log(err);
+      alert(err.response?.data?.message || "Upload Failed");
     } finally {
       setLoading(false);
     }
