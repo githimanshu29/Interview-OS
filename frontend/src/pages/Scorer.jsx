@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 import { FiUploadCloud } from "react-icons/fi";
 import { useState } from "react";
 import api from "../utils/axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setResume } from "../redux/resumeSlice";
 
 function Navbar({ label }) {
   const navigate = useNavigate();
@@ -30,8 +32,8 @@ function Navbar({ label }) {
 function Scorer({ user, setUser }) {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  //   const dispatch = useDispatch();
-  //   const { resume } = useSelector((s) => s.resume);
+  const dispatch = useDispatch(); // to set data into redux
+  const { resume } = useSelector((s) => s.resume); //to retrieve data from redux
 
   const uploadResume = async () => {
     if (!file) return alert("Please select a PDF");
@@ -51,7 +53,8 @@ function Scorer({ user, setUser }) {
       const formData = new FormData();
       formData.append("resume", file);
       const response = await api.post("/api/resume/upload", formData);
-      //   dispatch(setResume(response.data.data));
+      dispatch(setResume(response.data.data)); // setting data into redux through dispatch
+      setLoading(false);
     } catch (err) {
       console.log(err);
       alert(err.response?.data?.message || "Upload Failed");
