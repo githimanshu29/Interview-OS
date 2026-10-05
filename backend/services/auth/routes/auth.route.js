@@ -3,6 +3,7 @@ import {
   //   addCoins,
   login,
   logout,
+  useInterviewCoins,
   //   useInterviewCoins,
 } from "../controllers/auth.controller.js";
 
@@ -14,9 +15,6 @@ authRouter.get("/logout", logout);
 
 // authRouter.post("/add-coins",addCoins)
 
-// authRouter.post(
-//   "/use-interview-coins",
-//   useInterviewCoins
-// );
+authRouter.post("/use-interview-coins", useInterviewCoins);
 
 export default authRouter;

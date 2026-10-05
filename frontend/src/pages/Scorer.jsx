@@ -15,6 +15,7 @@ import api from "../utils/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setResume } from "../redux/resumeSlice";
 import { RadialBarChart, RadialBar, PolarAngleAxis } from "recharts";
+import { useCoins } from "../apis/user.api";
 
 // ─── Score Ring ──────────────────────────────────────────────
 function ScoreRing({ score }) {
@@ -102,15 +103,15 @@ function Scorer({ user, setUser }) {
     try {
       setLoading(true);
 
-      //   const coinResponse = await useCoins({
-      //     coins: 10,
-      //     action: "resume-score",
-      //   });
+      const coinResponse = await useCoins({
+        coins: 10,
+        action: "resume-score",
+      });
 
-      //   setUser((prev) => ({
-      //     ...prev,
-      //     interviewCoin: coinResponse.interviewCoin,
-      //   }));
+      setUser((prev) => ({
+        ...prev,
+        interviewCoin: coinResponse?.interviewCoin,
+      }));
 
       const formData = new FormData();
       formData.append("resume", file);

@@ -10,3 +10,14 @@ export const getCurrentUser = async () => {
     return null;
   }
 };
+
+export const useCoins = async (data) => {
+  try {
+    const response = await api.post("/api/auth/use-interview-coins", data);
+
+    return response.data;
+  } catch (error) {
+    console.log(error.response?.data || error.message);
+    return null;
+  }
+};
