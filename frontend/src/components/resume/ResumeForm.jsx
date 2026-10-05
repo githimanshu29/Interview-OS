@@ -3,6 +3,7 @@ import React from "react";
 import { FiPlus, FiTrash2 } from "react-icons/fi";
 
 // ─── Reusable Input ───────────────────────────────────────────────────────────
+
 function Input({ label, value, onChange, placeholder, type = "text" }) {
   return (
     <div className="flex flex-col gap-1">
