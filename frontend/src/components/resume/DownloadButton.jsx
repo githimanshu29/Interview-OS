@@ -1,7 +1,8 @@
 import { FiDownload } from "react-icons/fi";
 import { useReactToPrint } from "react-to-print";
 // import api from "../../utils/axios";
-import { useCoins } from "../../api/user.api";
+
+import { useCoins } from "../../apis/user.api";
 
 export default function DownloadButton({ resumeRef, user, setUser }) {
   const handlePrint = useReactToPrint({
