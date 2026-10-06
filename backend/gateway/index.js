@@ -38,16 +38,17 @@ app.use("/api/auth", proxy(process.env.AUTH_SERVICE_URL));
 
 app.get("/api/me", isAuth, getCurrentUser);
 
-// app.use(
-//   "/api/interview",
-//   isAuth,
-//   proxyWithUser(process.env.INTERVIEW_SERVICE_URL),
-// );
+app.use(
+  "/api/interview",
+  isAuth,
+  proxyWithUser(process.env.INTERVIEW_SERVICE_URL),
+);
 
 app.use("/api/resume", isAuth, proxyWithUser(process.env.RESUME_SERVICE_URL));
 app.use("/hy", (req, res) => {
   return res.send("Hello");
 });
+
 // app.use("/api/roadmap", isAuth, proxyWithUser(process.env.ROADMAP_SERVICE_URL));
 
 // app.use("/api/billing", isAuth, proxyWithUser(process.env.BILLING_SERVICE_URL));
