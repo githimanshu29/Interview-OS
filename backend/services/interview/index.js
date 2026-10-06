@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import dns from "dns";
-import { connectDb } from "./configs/db.js";
+import { connectDb } from "./config/db.js";
 
 // import interviewRouter from "./routes/interview.route.js";
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
