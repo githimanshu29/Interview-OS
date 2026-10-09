@@ -32,22 +32,22 @@ function Dashboard({ user, setUser }) {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchInterviews = async () => {
-      const response = await getAllInterviews();
+  // useEffect(() => {
+  //   const fetchInterviews = async () => {
+  //     const response = await getAllInterviews();
 
-      setStats(response.stats);
+  //     setStats(response.stats);
 
-      setTechnicalData(response.technicalData);
+  //     setTechnicalData(response.technicalData);
 
-      setBehaviouralData(response.behaviouralData);
+  //     setBehaviouralData(response.behaviouralData);
 
-      setTechnicalCount(response.technicalCount);
+  //     setTechnicalCount(response.technicalCount);
 
-      setHrCount(response.hrCount);
-    };
-    fetchInterviews();
-  }, []);
+  //     setHrCount(response.hrCount);
+  //   };
+  //   fetchInterviews();
+  // }, []);
 
   const handleLogout = async () => {
     try {

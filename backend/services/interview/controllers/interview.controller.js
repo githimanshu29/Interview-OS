@@ -1,4 +1,4 @@
-import Interview from "../model/interview.model.js";
+import Interview from "../models/interview.model.js";
 import graph from "../graph/graph.js";
 import redis from "../../../shared/redis/redis.js";
 

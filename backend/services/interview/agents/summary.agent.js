@@ -1,4 +1,4 @@
-import llm from "../configs/llm.js";
+import llm from "../config/llm.js";
 import summaryPrompt from "../prompts/summary.prompt.js";
 
 export default async function summaryAgent(data) {

@@ -1,4 +1,4 @@
-import llm from "../configs/llm.js";
+import llm from "../config/llm.js";
 import hrInterviewPrompt from "../prompts/hrInterviewPrompt.js";
 import technicalInterviewPrompt from "../prompts/technicalInterviewPrompt.js";
 

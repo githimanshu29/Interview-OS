@@ -21,3 +21,16 @@ export const useCoins = async (data) => {
     return null;
   }
 };
+
+
+
+export const addCoins = async (data) => {
+  try {
+    const response = await api.post("/api/auth/add-interview-coins", data);
+
+    return response.data;
+  } catch (error) {
+    console.log(error.response?.data || error.message);
+    return null;
+  }
+};

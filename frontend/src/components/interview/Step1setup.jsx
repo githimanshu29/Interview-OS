@@ -17,7 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setResume } from "../../redux/resumeSlice";
 import { useNavigate } from "react-router-dom";
 import api from "../../utils/axios";
-// import { startInterview } from "../../api/interview.api";
+
+import { startInterview } from "../../apis/interview.api";
 import { useCoins } from "../../apis/user.api";
 
 function Step1SetUp({ user, setUser }) {

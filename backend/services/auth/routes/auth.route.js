@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  addInterviewCoins,
   //   addCoins,
   login,
   logout,
@@ -16,5 +17,7 @@ authRouter.get("/logout", logout);
 // authRouter.post("/add-coins",addCoins)
 
 authRouter.post("/use-interview-coins", useInterviewCoins);
+
+authRouter.post("/add-interview-coins", addInterviewCoins);
 
 export default authRouter;
