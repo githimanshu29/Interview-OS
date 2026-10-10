@@ -4,9 +4,13 @@ import Sidebar from "../components/Sidebar";
 import api from "../utils/axios";
 import { motion } from "motion/react";
 import { FiSidebar } from "react-icons/fi";
+import { addCoins } from "../apis/user.api";
 
 function Dashboard({ user, setUser }) {
   const [collapsed, setCollapsed] = useState(true); // desktop collapse
+
+  console.log(`user:${user}`);
+  console.log(user);
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -48,6 +52,9 @@ function Dashboard({ user, setUser }) {
   //   };
   //   fetchInterviews();
   // }, []);
+
+
+    
 
   const handleLogout = async () => {
     try {

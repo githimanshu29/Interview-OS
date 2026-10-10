@@ -42,6 +42,11 @@ export default function Sidebar({
 }) {
   const [loading, setLoading] = useState(false);
 
+  //  const coins = addCoins();
+  //   console.log("Himanshu");
+  //     console.log(user.interviewCoin);
+  //     const [coin, setCoin]=useState(user.interviewCoin);
+
   const navigate = useNavigate();
   const location = useLocation();
   const initials = user?.name

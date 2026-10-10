@@ -8,6 +8,7 @@ import redis from "../../../shared/redis/redis.js";
 export const login = async (req, res) => {
   try {
     const { token } = req.body;
+    console.log(`token->:${token}`);
 
     const decoded = await getAuth(app).verifyIdToken(token);
 
@@ -156,8 +157,6 @@ export const useInterviewCoins = async (req, res) => {
   }
 };
 
-
-
 export const addInterviewCoins = async (req, res) => {
   try {
     const sessionId = req.cookies?.session;
@@ -170,9 +169,7 @@ export const addInterviewCoins = async (req, res) => {
 
     const sessionData = JSON.parse(session);
 
-    const { action } = req.body;
-
-   
+    // const { action } = req.body;
 
     const user = await User.findById(sessionData.userId);
 
@@ -214,7 +211,7 @@ export const addInterviewCoins = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Interview coins added successfully",
-      action,
+
       interviewCoin: user.interviewCoin,
     });
   } catch (error) {

@@ -22,13 +22,11 @@ export const useCoins = async (data) => {
   }
 };
 
-
-
-export const addCoins = async (data) => {
+export const addCoins = async () => {
   try {
-    const response = await api.post("/api/auth/add-interview-coins", data);
-
-    return response.data;
+    const response = await api.post("/api/auth/add-interview-coins");
+    const coins = response.data.interviewCoin;
+    return coins;
   } catch (error) {
     console.log(error.response?.data || error.message);
     return null;
