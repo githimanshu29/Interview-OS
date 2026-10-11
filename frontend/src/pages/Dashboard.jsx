@@ -5,6 +5,8 @@ import api from "../utils/axios";
 import { motion } from "motion/react";
 import { FiSidebar } from "react-icons/fi";
 import { addCoins } from "../apis/user.api";
+import { getAllInterviews } from "../apis/interview.api";
+import StatBox from "../components/interview/Statbox";
 
 function Dashboard({ user, setUser }) {
   const [collapsed, setCollapsed] = useState(true); // desktop collapse
@@ -36,25 +38,22 @@ function Dashboard({ user, setUser }) {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchInterviews = async () => {
-  //     const response = await getAllInterviews();
+  useEffect(() => {
+    const fetchInterviews = async () => {
+      const response = await getAllInterviews();
 
-  //     setStats(response.stats);
+      setStats(response.stats);
 
-  //     setTechnicalData(response.technicalData);
+      setTechnicalData(response.technicalData);
 
-  //     setBehaviouralData(response.behaviouralData);
+      setBehaviouralData(response.behaviouralData);
 
-  //     setTechnicalCount(response.technicalCount);
+      setTechnicalCount(response.technicalCount);
 
-  //     setHrCount(response.hrCount);
-  //   };
-  //   fetchInterviews();
-  // }, []);
-
-
-    
+      setHrCount(response.hrCount);
+    };
+    fetchInterviews();
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -121,7 +120,7 @@ function Dashboard({ user, setUser }) {
 
         <div className="h-px bg-black/8 mb-5 md:mb-6" />
 
-        {/* Stat Boxes
+        {/* Stat Boxes */}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2.5 md:gap-3">
           <StatBox
@@ -155,7 +154,7 @@ function Dashboard({ user, setUser }) {
             sub="Average Performance"
             index={3}
           />
-        </div> */}
+        </div>
 
         {/* Graph Section */}
 

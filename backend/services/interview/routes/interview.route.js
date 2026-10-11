@@ -1,6 +1,7 @@
 import express from "express";
 
 import {
+  getAllInterviews,
   getInterview,
   startInterview,
   submitAnswer,
@@ -8,13 +9,12 @@ import {
 
 const interviewRouter = express.Router();
 
+interviewRouter.post("/start", startInterview);
 
-interviewRouter.post("/start",startInterview);
+interviewRouter.post("/answer", submitAnswer);
 
-interviewRouter.post("/answer",submitAnswer);
+interviewRouter.get("/all", getAllInterviews);
 
-// interviewRouter.get("/all",getAllInterviews);
-
-interviewRouter.get("/:id",getInterview);
+interviewRouter.get("/:id", getInterview);
 
 export default interviewRouter;
