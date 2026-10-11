@@ -7,7 +7,7 @@ import { FiSidebar } from "react-icons/fi";
 import { addCoins } from "../apis/user.api";
 import { getAllInterviews } from "../apis/interview.api";
 import StatBox from "../components/interview/Statbox";
-
+import InterviewGraph from "../components/interview/interviewGraph";
 function Dashboard({ user, setUser }) {
   const [collapsed, setCollapsed] = useState(true); // desktop collapse
 
@@ -173,14 +173,14 @@ function Dashboard({ user, setUser }) {
           </h2>
         </motion.div>
 
-        {/* <div className="w-full overflow-x-auto">
+        <div className="w-full overflow-x-auto">
           <InterviewGraph
             technicalData={technicalData}
             behaviouralData={behaviouralData}
             technicalCount={technicalCount}
             hrCount={hrCount}
           />
-        </div> */}
+        </div>
       </motion.main>
     </div>
   );
