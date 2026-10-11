@@ -49,7 +49,7 @@ app.use("/hy", (req, res) => {
   return res.send("Hello");
 });
 
-// app.use("/api/roadmap", isAuth, proxyWithUser(process.env.ROADMAP_SERVICE_URL));
+app.use("/api/roadmap", isAuth, proxyWithUser(process.env.ROADMAP_SERVICE_URL));
 
 // app.use("/api/billing", isAuth, proxyWithUser(process.env.BILLING_SERVICE_URL));
 
